@@ -13,13 +13,17 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginScreen?.delegate(self)
     }
     
     override func loadView() {
         loginScreen = LoginScreen()
         view = loginScreen
     }
-
-
 }
 
+extension LoginViewController: LoginScreenProtocol {
+    func tappedLoginButton() {
+        print(":LoginViewController")
+    }
+}
