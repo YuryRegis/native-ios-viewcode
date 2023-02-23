@@ -19,6 +19,11 @@ class LoginScreen: UIView {
         self.delegate = delegate
     }
     
+    public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
+        emailTextField.delegate = delegate
+        passwordTextField.delegate = delegate
+    }
+    
     lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
