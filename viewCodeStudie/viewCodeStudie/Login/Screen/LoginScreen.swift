@@ -66,11 +66,13 @@ class LoginScreen: UIView {
     
     lazy var loginBuntton: UIButton = {
         let loginBtn = UIButton()
+        loginBtn.isEnabled = false
         loginBtn.clipsToBounds = true
         loginBtn.layer.cornerRadius = 9
-        loginBtn.backgroundColor = .magenta
+        loginBtn.backgroundColor = .magenta.withAlphaComponent(0.3)
         loginBtn.setTitle("Logar", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)
+        loginBtn.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .disabled)
         loginBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         loginBtn.translatesAutoresizingMaskIntoConstraints = false
         loginBtn.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)

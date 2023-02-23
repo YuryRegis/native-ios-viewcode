@@ -28,8 +28,19 @@ extension LoginViewController: LoginScreenProtocol, UITextFieldDelegate {
         print(":LoginViewController")
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print(#function)
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let email: String = self.loginScreen?.emailTextField.text ?? ""
+        let password: String = self.loginScreen?.passwordTextField.text ?? ""
+        
+        if email.isEmpty || password.isEmpty {
+//            lógica botão desativado
+            self.loginScreen?.loginBuntton.isEnabled = false
+            self.loginScreen?.loginBuntton.backgroundColor = .magenta.withAlphaComponent(0.6)
+        } else {
+//            lógica botão ativo
+            self.loginScreen?.loginBuntton.isEnabled = true
+            self.loginScreen?.loginBuntton.backgroundColor = .magenta
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
