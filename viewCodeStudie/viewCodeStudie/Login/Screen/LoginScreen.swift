@@ -24,7 +24,7 @@ class LoginScreen: UIView {
         email.font = UIFont.systemFont(ofSize: 20)
         email.backgroundColor = .darkGray
         email.borderStyle = .roundedRect
-        email.layer.borderColor = UIColor.white.cgColor
+        email.layer.borderColor = UIColor.magenta.cgColor
         email.layer.borderWidth = 1
         email.layer.cornerRadius = 9
         email.attributedPlaceholder = NSAttributedString(string: "exemplo@email.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
@@ -43,11 +43,28 @@ class LoginScreen: UIView {
         password.borderStyle = .roundedRect
         password.layer.borderWidth = 1
         password.layer.cornerRadius = 9
-        password.layer.borderColor = UIColor.white.cgColor
+        password.layer.borderColor = UIColor.magenta.cgColor
         password.keyboardType = .default
         password.translatesAutoresizingMaskIntoConstraints = false
         return password
     }()
+    
+    lazy var loginBuntton: UIButton = {
+        let loginBtn = UIButton()
+        loginBtn.clipsToBounds = true
+        loginBtn.layer.cornerRadius = 9
+        loginBtn.backgroundColor = .magenta
+        loginBtn.setTitle("Logar", for: .normal)
+        loginBtn.setTitleColor(UIColor.white, for: .normal)
+        loginBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        loginBtn.translatesAutoresizingMaskIntoConstraints = false
+        loginBtn.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
+        return loginBtn
+    }()
+    
+    @objc func tappedLoginButton(_ sender: UIButton) {
+        print("Tapped!")
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,6 +79,7 @@ class LoginScreen: UIView {
     
     private func addElements() {
         self.addSubview(loginLabel)
+        self.addSubview(loginBuntton)
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
     }
@@ -77,7 +95,12 @@ class LoginScreen: UIView {
             
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
             passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
+            loginBuntton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            loginBuntton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loginBuntton.heightAnchor.constraint(equalToConstant: 50),
+            loginBuntton.widthAnchor.constraint(equalToConstant: 300),
         ])
     }
 }
